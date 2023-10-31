@@ -1,7 +1,7 @@
-const User = require("../models/user.model.js");
+const User = require("../models/user.model");
 const bcrypt = require("bcryptjs");
 
-export async function signUp(req, res, next) {
+async function signUp(req, res, next) {
   try {
     const { username, password } = req.body;
     const hashpassword = await bcrypt.hash(password, 12);
@@ -22,7 +22,7 @@ export async function signUp(req, res, next) {
   }
 }
 
-export async function login(req, res, next) {
+async function login(req, res, next) {
   try {
     const { username, password } = req.body;
     const user = await User.findOne({ username });
@@ -30,19 +30,20 @@ export async function login(req, res, next) {
     if (!user) {
       return res.status(404).json({
         status: "fail",
-        message: "incorrect user or passowrd",
+        message: "incorrect user or password",
       });
     }
 
     const isCorrect = await bcrypt.compare(password, user.password);
     if (isCorrect) {
+      req.session.user = user;
       res.status(200).json({
         status: "success",
       });
     } else {
       return res.status(201).json({
         status: "fail",
-        message: "incorrect user or passowrd",
+        message: "incorrect user or password",
       });
     }
   } catch (err) {
@@ -51,3 +52,8 @@ export async function login(req, res, next) {
     });
   }
 }
+
+module.exports = {
+  signUp,
+  login,
+};

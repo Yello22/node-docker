@@ -1,6 +1,6 @@
-const Post = require("../models/post.model.js");
+const Post = require("../models/post.model");
 
-export async function getAllPosts(req, res, next) {
+async function getAllPosts(req, res, next) {
   try {
     const posts = await Post.find();
     res.status(200).json({
@@ -17,7 +17,7 @@ export async function getAllPosts(req, res, next) {
   }
 }
 
-export async function getPost(req, res, next) {
+async function getPost(req, res, next) {
   try {
     const { id } = req.params;
     const post = await Post.findById(id);
@@ -34,7 +34,7 @@ export async function getPost(req, res, next) {
   }
 }
 
-export async function createPost(req, res, next) {
+async function createPost(req, res, next) {
   try {
     const post = await Post.create(req.body);
     res.status(200).json({
@@ -50,7 +50,7 @@ export async function createPost(req, res, next) {
   }
 }
 
-export async function updatePost(req, res, next) {
+async function updatePost(req, res, next) {
   try {
     const { id } = req.params;
     const post = await Post.findByIdAndUpdate(id, req.body, { new: true });
@@ -67,7 +67,7 @@ export async function updatePost(req, res, next) {
   }
 }
 
-export async function deletePost(req, res, next) {
+async function deletePost(req, res, next) {
   try {
     const { id } = req.params;
     await Post.findByIdAndDelete(id);
@@ -80,3 +80,11 @@ export async function deletePost(req, res, next) {
     });
   }
 }
+
+module.exports = {
+  getAllPosts,
+  getPost,
+  createPost,
+  updatePost,
+  deletePost,
+};
