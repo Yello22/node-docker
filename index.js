@@ -4,6 +4,7 @@ const session = require("express-session");
 const redis = require("redis");
 let RedisStore = require("connect-redis")(session);
 const config = require("./config.js");
+const cors = require("cors");
 
 const postRouter = require("./routes/post.routes.js");
 const userRouter = require("./routes/user.routes.js");
@@ -29,6 +30,8 @@ let redisClient = redis.createClient({
   port: config.REDIS_PORT,
 });
 
+app.enable("trus proxy");
+app.use(cors({}));
 app.use(
   session({
     store: new RedisStore({ client: redisClient }),
@@ -38,18 +41,20 @@ app.use(
     cookie: {
       secure: false,
       httpOnly: true,
-      maxAge: 30000,
+      maxAge: 1000 * 60,
     },
   })
 );
 
 app.use(express.json());
 
+app.get("/api/v1", (req, res, next) => {
+  res.send("<h2>Hi There !!!</h2><p>Rakoto & Rasoa potato</p>");
+  console.log("yeah it ran");
+});
+
 app.use("/api/v1/posts", postRouter);
 app.use("/api/v1/users", userRouter);
-app.get("/", (req, res, next) => {
-  res.send("<h2>Hi There !!!</h2><p>Rakoto & Rasoa potato</p>");
-});
 
 const port = process.env.PORT || 3000;
 

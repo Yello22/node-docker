@@ -9,6 +9,7 @@ async function signUp(req, res, next) {
       username: username,
       password: hashpassword,
     });
+    req.session.user = newUser;
     res.status(200).json({
       status: "success",
       data: {

@@ -8,3 +8,7 @@ services:
     environment:
       - NODE_ENV=production
     command: node index.js
+  nginx:
+    image: nginx:stable-alpine
+    ports:
+      - "80:80"
