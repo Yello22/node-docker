@@ -15,7 +15,7 @@ services:
     image: nginx:stable-alpine
     ports:
       - "80:80"
-  mongo:
+  percona-mongo:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
