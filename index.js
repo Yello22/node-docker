@@ -49,7 +49,7 @@ app.use(
 app.use(express.json());
 
 app.get("/api/v1", (req, res, next) => {
-  res.send("<h2>Hi There !!!</h2><p>Rakoto & Rasoa potato</p>!!");
+  res.send("Hello");
   console.log("yeah it ran");
 });
 
