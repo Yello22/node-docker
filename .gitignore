@@ -16,27 +16,13 @@ node_modules/
 /coverage
 
 files/
-files/doc/annexe/
-files/doc/cr/
-files/doc/ficheVisite/
-files/doc/mail/
-files/doc/observation/
-files/doc/pdf/
-files/doc/planningGlissant/
 
-files/import/tmp/
-files/photo/chantier/
-files/photo/logoUser/
-files/photo/media/
-files/photo/plan/
-files/photo/user/
 
 # production
 /build
 
 config.env
 
-draw.json
 
 # misc
 .DS_Store
