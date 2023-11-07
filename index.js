@@ -49,8 +49,8 @@ app.use(
 app.use(express.json());
 
 app.get("/api/v1", (req, res, next) => {
-  res.send("Hello");
   console.log("yeah it ran");
+  res.send("Hello rakoto !!!");
 });
 
 app.use("/api/v1/posts", postRouter);
