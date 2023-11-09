@@ -1,6 +1,13 @@
 version: "3"
 services:
   node-app:
+    deploy:
+      replicas: 8
+      restart_policy:
+        condition: any
+      update_config:
+        parallelism: 2
+        delay: 15s
     build:
       context: .
       args:

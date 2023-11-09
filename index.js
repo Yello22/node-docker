@@ -50,7 +50,7 @@ app.use(express.json());
 
 app.get("/api/v1", (req, res, next) => {
   console.log("yeah it ran");
-  res.send("Hello rakoto !!!");
+  res.send("yeah it ran");
 });
 
 app.use("/api/v1/posts", postRouter);
